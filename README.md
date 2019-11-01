@@ -2,7 +2,9 @@
 
 RustFest '19 Barcelona InGRAINd workshop materials
 
-## Steps
+## Option 2
+
+Running on Windows or maxOS
 
 1. Checkout this repo
 1. Install the rust toolchain `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
