@@ -42,10 +42,10 @@ Vagrant.configure("2") do |config|
         --default-toolchain nightly \
         --no-modify-path 
 
-    source $HOME/.cargo/env
     echo 'source /root/.cargo/env' >> ~/.bashrc
     echo 'export CARGO_TARGET_DIR=~/target' >> ~/.bashrc
     echo 'export KERNEL_SOURCE=/usr/src/linux-headers-5.2.0-3-amd64/' >> ~/.bashrc
+    . ~/.bashrc
 
     rustup target add x86_64-unknown-linux-musl 
     rustup toolchain add stable 
