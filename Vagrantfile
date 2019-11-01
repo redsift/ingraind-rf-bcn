@@ -14,7 +14,6 @@ Vagrant.configure("2") do |config|
   # config.vm.box_check_update = false
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.synced_folder ".", "/vagrant"
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.memory = "2048"
@@ -41,7 +40,6 @@ Vagrant.configure("2") do |config|
         --no-modify-path 
 
     echo 'source /root/.cargo/env' >> ~/.bashrc
-    echo 'export CARGO_TARGET_DIR=~/target' >> ~/.bashrc
     echo 'export KERNEL_SOURCE=/usr/src/linux-headers-5.2.0-3-amd64/' >> ~/.bashrc
     . ~/.bashrc
 
@@ -64,5 +62,6 @@ Vagrant.configure("2") do |config|
 
     cd ingraind
     cargo build
+    cargo build --release
   SHELL
 end
