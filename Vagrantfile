@@ -56,7 +56,7 @@ Vagrant.configure("2") do |config|
     docker-compose up -d
 
     cd /vagrant
-    git clone --branch ingraind-probes https://github.com/alessandrod/ingraind
+    git clone --branch v1.0 https://github.com/redsift/ingraind
 
     # TODO: This needs to be fixed properly
     cp -r /usr/src/linux-headers-5.2.0-3-common/* /usr/src/linux-headers-5.2.0-3-amd64/
