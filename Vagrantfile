@@ -66,6 +66,5 @@ Vagrant.configure("2") do |config|
 
     cd ingraind
     cargo build
-    cargo build --release
   SHELL
 end
