@@ -24,18 +24,16 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "./docker-compose.yml", destination: "/home/vagrant/docker-compose.yml"
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y ca-certificates{,-java} docker.io debhelper cmake llvm-9 libllvm9 llvm-9-dev libclang-9-dev \
-       libelf-dev bison flex libedit-dev clang-format-9 \
-       devscripts zlib1g-dev libfl-dev \
-       pkg-config libssl-dev \
-       curl \
-       git \
-       clang \
+    apt-get install -y ca-certificates{,-java} \
+       llvm llvm-9 libllvm9 llvm-9-dev clang libclang-9-dev clang-format-9 \
+       bison flex debhelper cmake devscripts \
+       zlib1g-dev libfl-dev libelf-dev libedit-dev libssl-dev \
+       curl git \
        musl musl-tools musl-dev \
        linux-headers-amd64 \
        capnproto \
-       docker.io \
-       docker-compose
+       pkg-config \
+       docker.io docker-compose
     
     curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs
     sh rustup.sh -y \
