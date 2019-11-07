@@ -17,6 +17,24 @@ A Raspberry Pi is provided to attendants of the workshop.  This is an
 alternative to the Vagrant/VBox setup, they are provisioned with the
 same script.
 
+To connect to the Raspberry Pi, you will need an Ethernet cable. On
+the workshop, we provide a limited number of USB-Ethernet adapters
+that should work out of the box on Windows and Linux machines. For
+macOS, use [driver included in this
+repo](./AmazonBasics_USB_LAN_Adapter_Driver_3.0._CB1198675309_.dmg).
+
+Once connected through Ethernet, the Raspberry Pi will answer to DHCP
+requests in the `10.13.37.0/24` subnet.
+
+You can SSH into the Pi using:
+
+    ssh root@10.13.37.1
+	
+The password is `ingrain`.
+
+There is also a NextCloud server running on HTTP, so you can access
+[http://10.13.37.1/](http://10.13.37.1/) in a web browser.
+
 ## Enter Vagrant
 
 You will need 2GB free RAM, and about 8GB of free disk space to start
