@@ -47,6 +47,8 @@ Vagrant.configure("2") do |config|
     rustup toolchain add stable 
     rustup component add rustfmt
 
+    cargo install cargo-bpf
+
     systemctl enable docker
     systemctl start docker
     
@@ -58,10 +60,8 @@ Vagrant.configure("2") do |config|
 
     # TODO: This needs to be fixed properly
     cp -r /usr/src/linux-headers-5.2.0-3-common/* /usr/src/linux-headers-5.2.0-3-amd64/
-    ln -s /usr/bin/llc-9 /usr/bin/llc
 
     cd ingraind
-    cargo build
     cargo build --release
   SHELL
 end
