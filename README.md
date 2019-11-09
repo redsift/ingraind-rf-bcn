@@ -35,6 +35,22 @@ The password is `ingrain`.
 There is also a NextCloud server running on HTTP, so you can access
 [http://10.13.37.1/](http://10.13.37.1/) in a web browser.
 
+### Getting your Pi to access the Internet
+
+On your Linux host machine. Note: replace `wlp61s0` with your Wifi adaptor.
+
+```
+iptables -P FORWARD ACCEPT
+iptables -t nat -I POSTROUTING  -o wlp61s0 -j MASQUERADE
+sysctl net.ipv4.ip_forward=1
+```
+
+On the Pi
+
+```
+ip ro add default via 10.13.37.<laptop ip>
+```
+
 ## Enter Vagrant
 
 You will need 2GB free RAM, and about 8GB of free disk space to start
