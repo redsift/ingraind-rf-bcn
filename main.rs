@@ -35,7 +35,7 @@ pub extern "C" fn probe(ctx: *mut xdp_md) -> XdpAction {
         None => return XdpAction::Pass,
     };
 
-    let http = ['H', 'T', 'T', 'P', '/', '1', '.', '1'];
+    let http = ['G', 'E', 'T', ' ', '/', ' ', 'H', 'T'];
     let iters = http.len();
 
     let mut decision = 1;
