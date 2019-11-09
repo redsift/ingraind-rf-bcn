@@ -4,7 +4,6 @@
 
 // block_http
 
-use crunchy::unroll;
 use cty::*;
 
 use redbpf_macros::*;
