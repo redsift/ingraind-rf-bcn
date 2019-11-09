@@ -139,3 +139,8 @@ the following steps:
 
     choco install vagrant
 	choco install virtualbox
+	
+# Reset XDP
+```
+ip link set dev eth0 xdp off	
+```
