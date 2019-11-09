@@ -11,7 +11,7 @@ use redbpf_probes::bindings::*;
 use redbpf_probes::xdp::PerfMap;
 use redbpf_probes::xdp::{Transport, XdpAction, XdpContext};
 
-use ingraind_probes::block_http::HTTPBlocked;
+use ingraind_probes::blockhttp::HTTPBlocked;
 
 // Use the types you're going to share with userspace, eg:
 // use ingraind-probes::block-http::SomeEvent;
@@ -35,28 +35,30 @@ pub extern "C" fn probe(ctx: *mut xdp_md) -> XdpAction {
         None => return XdpAction::Pass,
     };
 
-    let http = ['G', 'E', 'T', ' ', '/', ' ', 'H', 'T'];
+    let http = ['G','E','T',' ','/',' ','H', 'T', 'T', 'P', '/', '1', '.', '1'];
     let iters = http.len();
 
     let mut decision = 1;
-    if let Some(header) = data.slice(iters) {
-        for i in 0..8 {
-            if header[i] != http[i] as u8 {
-                decision = 0;
-            }
+
+    let mut header: [u8; 16] = match data.read() {
+        Some(s) => s,
+        None => return XdpAction::Pass
+    };
+    for i in 0..http.len()
+    {
+        if header[i] != http[i] as u8 {
+            decision = 0;        
         }
-    } else {
-        decision = 0;
     };
 
-    if decision == 1 {
-        let event = HTTPBlocked {
-            saddr: ip.saddr,
-            daddr: ip.daddr,
-            sport: 0,
-        };
-        unsafe { events.insert(&ctx, event, 0) };
-    }
+    let event = HTTPBlocked {
+        saddr: ip.saddr,
+        daddr: ip.daddr,
+        sport: 0,
+        header: header
+    };
+    unsafe { events.insert(&ctx, event, 0) };
+
 
     if decision == 1 {
         XdpAction::Drop
