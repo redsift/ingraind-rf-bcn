@@ -55,7 +55,6 @@ Vagrant.configure("2") do |config|
     cd /home/vagrant
     docker-compose up -d
 
-    cd /vagrant
     git clone --branch v1.0 https://github.com/redsift/ingraind
 
     # TODO: This needs to be fixed properly
