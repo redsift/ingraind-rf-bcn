@@ -11,7 +11,7 @@ use redbpf_probes::bindings::*;
 use redbpf_probes::xdp::PerfMap;
 use redbpf_probes::xdp::{Transport, XdpAction, XdpContext};
 
-use ingraind_probes::blockhttp::HTTPBlocked;
+use ingraind_probes::block_http::HTTPBlocked;
 
 // Use the types you're going to share with userspace, eg:
 // use ingraind-probes::block-http::SomeEvent;
