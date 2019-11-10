@@ -47,14 +47,20 @@ pub extern "C" fn probe(ctx: *mut xdp_md) -> XdpAction {
     for i in 0..http.len()
     {
         if header[i] != http[i] as u8 {
-            decision = 0;        
+            decision = 0;
         }
+    };
+
+    let (sport, dport) = match ctx.transport() {
+        Some(t) => (t.source(), t.dest()),
+        None => (0, 0),
     };
 
     let event = HTTPBlocked {
         saddr: ip.saddr,
         daddr: ip.daddr,
-        sport: 0,
+        sport: sport,
+        dport: dport,
         header: header
     };
     unsafe { events.insert(&ctx, event, 0) };

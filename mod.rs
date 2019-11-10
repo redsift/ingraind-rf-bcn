@@ -4,7 +4,8 @@ use cty::*;
 pub struct HTTPBlocked {
     pub saddr: u32,
     pub daddr: u32,
-    pub sport: u32,
+    pub sport: u16,
+    pub dport: u16,
     pub header: [u8; 16],
 }
 
